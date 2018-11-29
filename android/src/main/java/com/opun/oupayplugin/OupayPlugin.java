@@ -132,20 +132,13 @@ public class OupayPlugin implements MethodCallHandler {
     Log.d(TAG, "微信支付参数：" + payInfo);
     try {
       JSONObject paramsJson = new JSONObject(payInfo);
-      req.appId = call.argument("appid");
-      req.partnerId = call.argument("partnerid");
-      req.prepayId= call.argument("prepayid");
-      req.packageValue = call.argument("package");
-      req.nonceStr= call.argument("noncestr");
-      req.timeStamp= call.argument("timestamp");
-      req.sign= call.argument("sign");
 
-      req.appId = paramsJson.getString("appId");
-      req.partnerId = paramsJson.getString("partnerId");
-      req.prepayId = paramsJson.getString("prepayId");
-      req.packageValue = paramsJson.getString("packageValue");
-      req.nonceStr = paramsJson.getString("nonceStr");
-      req.timeStamp = paramsJson.getString("timeStamp");
+      req.appId = paramsJson.getString("appid");
+      req.partnerId = paramsJson.getString("partnerid");
+      req.prepayId = paramsJson.getString("prepayid");
+      req.packageValue = paramsJson.getString("package");
+      req.nonceStr = paramsJson.getString("noncestr");
+      req.timeStamp = paramsJson.getString("timestamp");
       req.sign = paramsJson.getString("sign");
 
       Log.d(TAG, "微信app订单：" + req.toString() );
