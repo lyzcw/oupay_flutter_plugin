@@ -17,6 +17,12 @@ class OupayPlugin {
     return version;
   }
 
+  //注册微信app id
+  static Future<bool> registerWechat(String appId) async {
+    return await _channel
+        .invokeMethod('registerWechat', <String, dynamic>{'appId': appId});
+  }
+
   /// 根据参数调起支付宝或微信支付接口
   /// payInfo 服务端返回的预支付订单字符串
   /// IOS用到：urlScheme iOS 支付需要用到，用Xcode打开项目ios部分，点击项目名称，点击“Info”选项卡，

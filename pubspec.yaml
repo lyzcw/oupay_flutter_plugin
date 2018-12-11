@@ -1,8 +1,8 @@
 name: oupay_plugin
 description: A new flutter plugin project.
 version: 0.0.1
-author: lyzcw@sina.com
-homepage: https://github.com/lyzcw
+author: lyzcw<lyzcw@sina.com>
+homepage: https://github.com/lyzcw/oupay_flutter_plugin
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"

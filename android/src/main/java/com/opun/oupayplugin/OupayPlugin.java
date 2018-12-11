@@ -13,6 +13,7 @@ import com.alipay.sdk.app.PayTask;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.opun.oupayplugin.wxapi.StateManager;
 
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -65,15 +66,15 @@ public class OupayPlugin implements MethodCallHandler {
     if (call.method.equals("getPlatformVersion")) {
       result.success("Android " + android.os.Build.VERSION.RELEASE);
     } else if (call.method.equals("aliPay")) {
-//      String payInfo = call.argument("payInfo");
-//      aliPay( registrar.activity(), payInfo, result );
       String payInfo = call.argument("payInfo");
       boolean isSandbox = call.argument("isSandbox");
       this.aliPay( payInfo,isSandbox, result);
 
     } else if (call.method.equals("wechatPay")) {
       this.wechatPay(call);
-    } else {
+    } else if (call.method.equals("registerWechat")) {
+      this.registerToWX(call,result);
+    }else {
       result.notImplemented();
     }
 
@@ -153,4 +154,12 @@ public class OupayPlugin implements MethodCallHandler {
     }
   }
 
+  //注册微信app id
+  private void registerToWX(MethodCall call, Result result){
+    String appId = call.argument("appId");
+    wxApi = WXAPIFactory.createWXAPI(registrar.context(),appId);
+    boolean res =wxApi.registerApp(appId);
+    StateManager.setApi(wxApi);
+    result.success(res);
+  }
 }

@@ -122,8 +122,14 @@ class _MyAppState extends State<MyApp> {
   @override
   initState() {
     super.initState();
+    //注册微信app id
+    registerWechat();
 
-//    _loadPreOrder( "12" );
+  }
+
+  registerWechat() async {
+    bool result = await OupayPlugin.registerWechat('wx8b9e82276293d56b');
+    print(result);
   }
 
   onChanged(String value) {
